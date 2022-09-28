@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Search from "./Search";
-import TemporaryDrawer from "./Drawer";
+import BasicMenu from "./Drawer";
 import useWindowSize from "./WindowSize";
 
 const Navbar = () => {
@@ -42,7 +42,8 @@ const Navbar = () => {
       <Search />
 
       {size.width <= 767 ? (
-        <TemporaryDrawer />
+        // <TemporaryDrawer />
+        <BasicMenu />
       ) : (
         <a className="telegram-link" href="#">
           Join Our Telegram

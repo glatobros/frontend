@@ -640,7 +640,7 @@ i img {
 }
 
 .price-input {
-  width: 4vw !important;
+  width: 2vw;
   text-align: center;
 }
 
@@ -849,6 +849,7 @@ i img {
   margin: 2vh 0 0 0;
   text-decoration: underline;
   text-underline-offset: 3px;
+  color: #689544;
 }
 
 .css-1hskriy {
@@ -857,6 +858,22 @@ i img {
 
 .no-controls {
   display: none;
+}
+
+.css-6hp17o-MuiList-root-MuiMenu-list {
+  text-align: center;
+}
+
+.css-6hp17o-MuiList-root-MuiMenu-list a {
+  text-decoration: none !important;
+  color: black !important;
+}
+
+.logout-menu {
+  border-radius: 0.2rem;
+  border: 1px solid red;
+  background-color: transparent;
+  color: red;
 }
 
 @media (min-width: 2560px) {
@@ -1454,5 +1471,117 @@ i img {
 
   .section-names {
     margin-left: 3.5vw;
+  }
+}
+
+@media (max-width: 424px) {
+  .banner-img {
+    margin-top: 10vh;
+  }
+
+  nav {
+    height: 10vh;
+  }
+
+  .search-bar input {
+    width: 60vw;
+  }
+
+  .search-bar {
+    right: 10%;
+  }
+
+  .text-on-banner {
+    top: 10%;
+  }
+
+  .text-on-banner h1 {
+    font-size: 3.5vh;
+  }
+
+  .text-on-banner button {
+    font-size: 1.5vh;
+    width: 30vw;
+  }
+
+  .text-on-banner p {
+    font-size: 1.5vh;
+  }
+
+  .home-category {
+    flex-wrap: wrap;
+  }
+
+  .allcats {
+    width: 15vw;
+    height: 14vh;
+    margin: 1vh;
+  }
+
+  .allcats img {
+    height: 9vh;
+  }
+
+  .allcats h4 {
+    font-size: 1.5vh;
+  }
+
+  .home-welcome-name h1 {
+    font-size: 3vh;
+  }
+
+  .home-welcome-name p {
+    font-size: 1.5vh;
+  }
+
+  .home-welcome {
+    margin: 10vh 0;
+    height: 25vh;
+  }
+
+  .allpromote {
+    margin: 0 1vw;
+  }
+
+  .allpromote p {
+    width: 30vw;
+    font-size: 1.5vh;
+  }
+
+  .allpromote h3 {
+    font-size: 1.5vh;
+  }
+
+  .section-names {
+    margin-top: 5vh;
+    margin-left: 3vw;
+  }
+
+  .top-strains-title h2 {
+    margin: 0%;
+  }
+
+  .login-inputs input {
+    width: 40vw;
+  }
+
+  .postpic-img-section {
+    width: 40vw;
+  }
+
+  .login-inputs textarea {
+    width: 40vw;
+  }
+
+  .price-input {
+    width: 5vw;
+  }
+
+  .post-select {
+    width: 25vw;
+  }
+
+  .login-inputs button {
+    width: 25vw;
   }
 }
