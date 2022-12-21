@@ -50,7 +50,7 @@ const Home = () => {
         <div className="text-on-banner">
           <h1>Need weed?</h1>
           <Link to="/strains">
-            <button>Start Shopping</button>
+            <button>Start Browsing</button>
           </Link>
           <p>Find the best accessories, strains, and electronics here!</p>
         </div>
@@ -115,7 +115,7 @@ const Home = () => {
       <div className="home-welcome">
         <div className="home-welcome-name">
           <h1>Welcome to G-Latø Brøs</h1>
-          <p>Best place to buy all your smoking essentials.</p>
+          <p>Best place to browse smoking essentials.</p>
         </div>
         <div className="promote-sections">
           <div className="allpromote">

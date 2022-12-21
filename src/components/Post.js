@@ -14,14 +14,14 @@ const Post = () => {
 
   const createPost = async (e) => {
     e.preventDefault();
-    if (!title || !category || !price || !content) {
+    if (!title || !category || !content) {
       setStatus("Please enter all fields");
     } else {
       try {
         const response = await post("/posts/create", {
           title: title,
           content: content,
-          price: "$" + price,
+          price: price ? "$" + price : "",
           postPic: postPic,
           typeOfCategory: category,
         });

@@ -116,7 +116,6 @@ const Strains = () => {
                   />
                 </div>
                 <p className="grinders-content">{strain.content}</p>
-                <p className="grinders-price">{strain.price}</p>
                 <div className="remove-btn">
                   {strain.creatorId === newId && (
                     <button onClick={() => deletePost(strain._id)}>
@@ -149,7 +148,6 @@ const Strains = () => {
                   />
                 </div>
                 <p className="grinders-content">{edible.content}</p>
-                <p className="grinders-price">{edible.price}</p>
                 <div className="remove-btn">
                   {edible.creatorId === newId && (
                     <button onClick={() => deletePost(edible._id)}>
@@ -182,7 +180,6 @@ const Strains = () => {
                   />
                 </div>
                 <p className="grinders-content">{cartridge.content}</p>
-                <p className="grinders-price">{cartridge.price}</p>
                 <div className="remove-btn">
                   {cartridge.creatorId === newId && (
                     <button onClick={() => deletePost(cartridge._id)}>
@@ -215,7 +212,6 @@ const Strains = () => {
                   />
                 </div>
                 <p className="grinders-content">{preRoll.content}</p>
-                <p className="grinders-price">{preRoll.price}</p>
                 <div className="remove-btn">
                   {preRoll.creatorId === newId && (
                     <button onClick={() => deletePost(preRoll._id)}>
