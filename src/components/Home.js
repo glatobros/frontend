@@ -120,24 +120,15 @@ const Home = () => {
         <div className="promote-sections">
           <div className="allpromote">
             <h3>Make smoking easy</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-              mollitia!
-            </p>
+            <p>Learn and find all you need about weed here!</p>
           </div>
           <div className="allpromote">
             <h3>Join our Telegram</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-              mollitia!
-            </p>
+            <p>Get the latest updates with our weekly newsletter!</p>
           </div>
           <div className="allpromote">
-            <h3>A weed communnity</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-              mollitia!
-            </p>
+            <h3>A weed community</h3>
+            <p>A community built by weed lovers for weed lovers!</p>
           </div>
         </div>
       </div>
