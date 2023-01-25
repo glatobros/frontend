@@ -12,7 +12,7 @@ const Search = () => {
     getAll();
   }, []);
 
-  console.log(all);
+  // console.log(all);
 
   const getAll = async () => {
     const response = await get("/posts/all");

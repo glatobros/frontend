@@ -27,7 +27,7 @@ const Login = () => {
 
         setTimeout(() => {
           navigate("/");
-        }, 2000);
+        }, 1500);
       } catch (err) {
         console.error(err.message);
       }

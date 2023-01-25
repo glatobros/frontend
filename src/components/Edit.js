@@ -1,9 +1,13 @@
 import React from "react";
-import axios from "axios";
-import { post } from "../services/service";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import Post from "./Post";
+import { get, post } from "../services/service";
 import Loader from "./Loader";
+import { Category } from "@mui/icons-material";
+// import useWindowSize from "./WindowSize";
 
-const Post = () => {
+const Edit = () => {
+  // const [post, setPost] = React.useState([]);
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
   const [price, setPrice] = React.useState("");
@@ -13,28 +17,40 @@ const Post = () => {
   const [isRecommended, setIsRecommended] = React.useState(false);
   const [status, setStatus] = React.useState("");
   const [loading, setLoading] = React.useState(false);
+  //   console.log(props);
+  const params = useParams();
+  // console.log(params.id);
 
-  const createPost = async (e) => {
-    e.preventDefault();
-    if (!title || !category || !content) {
-      setStatus("Please enter all required fields");
-    } else {
-      try {
-        const response = await post("/posts/create", {
-          title: title,
-          content: content,
-          price: price ? "$" + price : "",
-          postPic: postPic,
-          typeOfCategory: category,
-          quality: quality,
-          recommended: isRecommended,
-        });
-        console.log("DATA", response.data);
+  React.useEffect(() => {
+    fetchPost();
+  }, []);
+  // console.log("post");
+  //   console.log(data);
+  //   console.log(this.props.match.params);
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+  //   const size = useWindowSize();
 
-        window.location.reload(false);
-      } catch (err) {
-        console.error(err.message);
-      }
+  const logout = () => {
+    localStorage.clear();
+    // window.location.reload(false);
+    navigate("/");
+  };
+
+  const fetchPost = async () => {
+    try {
+      const response = await get(`/posts/find-post/${params.id}`);
+      // setPost(response.data);
+      setTitle(response.data[0].title);
+      setContent(response.data[0].content);
+      setPrice(response.data[0].price);
+      setPostPic(response.data[0].postPic);
+      setCategory(response.data[0].typeOfCategory);
+      setQuality(response.data[0].quality);
+      setIsRecommended(response.data[0].recommended);
+      console.log(response.data[0]);
+    } catch (err) {
+      console.error(err.message);
     }
   };
 
@@ -54,10 +70,35 @@ const Post = () => {
     }
   };
 
-  return (
+  const createPost = async (e) => {
+    e.preventDefault();
+    if (!title || !category || !content) {
+      setStatus("Please enter all required fields");
+    } else {
+      try {
+        const response = await post(`/posts/update/${params.id}`, {
+          title: title,
+          content: content,
+          price: price ? "$" + price : "",
+          postPic: postPic,
+          typeOfCategory: category,
+          quality: quality,
+          recommended: isRecommended,
+        });
+        console.log("DATA", response.data);
+
+        // window.location.reload(false);
+        navigate("/");
+      } catch (err) {
+        console.error(err.message);
+      }
+    }
+  };
+
+  return token ? (
     <div className="post-page">
       <form className="login-inputs" onSubmit={createPost}>
-        <h1 className="post-title">Create post</h1>
+        <h1 className="post-title">Edit post</h1>
         <input
           placeholder="Title..."
           type="text"
@@ -115,6 +156,7 @@ const Post = () => {
           <select
             className="post-select"
             onChange={(e) => setCategory(e.target.value)}
+            value={category}
           >
             <option>Category</option>
             <option value="strains">Strains</option>
@@ -131,6 +173,7 @@ const Post = () => {
           <select
             className="post-select"
             onChange={(e) => setQuality(e.target.value)}
+            value={quality}
           >
             <option>Quality</option>
             <option value="top-shelf">Top-shelf</option>
@@ -156,7 +199,7 @@ const Post = () => {
       {loading && <Loader />}
       {/* <Loader /> */}
     </div>
-  );
+  ) : null;
 };
 
-export default Post;
+export default Edit;

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import Footer from "./Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { get, deleted } from "../services/service";
 import axios from "axios";
 
@@ -10,6 +10,8 @@ const Strains = () => {
   const [edibles, setEdibles] = React.useState([]);
   const [preRolls, setPreRolls] = React.useState([]);
   const [cartridges, setCartridges] = React.useState([]);
+
+  const navigate = useNavigate();
 
   const newId = localStorage.getItem("id");
 
@@ -122,6 +124,14 @@ const Strains = () => {
                       Remove
                     </button>
                   )}
+                  {strain.creatorId === newId && (
+                    <button>
+                      <Link to={`/adminedit/${strain._id}`}>
+                        {/* <button onClick={() => navigate("/")}>Edit</button> */}
+                        Edit
+                      </Link>
+                    </button>
+                  )}
                 </div>
               </Link>
             </div>
@@ -152,6 +162,14 @@ const Strains = () => {
                   {edible.creatorId === newId && (
                     <button onClick={() => deletePost(edible._id)}>
                       Remove
+                    </button>
+                  )}
+                  {edible.creatorId === newId && (
+                    <button>
+                      <Link to={`/adminedit/${edible._id}`}>
+                        {/* <button onClick={() => navigate("/")}>Edit</button> */}
+                        Edit
+                      </Link>
                     </button>
                   )}
                 </div>
@@ -186,6 +204,14 @@ const Strains = () => {
                       Remove
                     </button>
                   )}
+                  {cartridge.creatorId === newId && (
+                    <button>
+                      <Link to={`/adminedit/${cartridge._id}`}>
+                        {/* <button onClick={() => navigate("/")}>Edit</button> */}
+                        Edit
+                      </Link>
+                    </button>
+                  )}
                 </div>
               </Link>
             </div>
@@ -216,6 +242,14 @@ const Strains = () => {
                   {preRoll.creatorId === newId && (
                     <button onClick={() => deletePost(preRoll._id)}>
                       Remove
+                    </button>
+                  )}
+                  {preRoll.creatorId === newId && (
+                    <button>
+                      <Link to={`/adminedit/${preRoll._id}`}>
+                        {/* <button onClick={() => navigate("/")}>Edit</button> */}
+                        Edit
+                      </Link>
                     </button>
                   )}
                 </div>

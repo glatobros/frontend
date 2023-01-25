@@ -8,6 +8,7 @@ import Strains from "./components/Strains";
 import Electronics from "./components/Electronics";
 import Login from "./components/Login";
 import Post from "./components/Post";
+import Edit from "./components/Edit";
 import AdminControls from "./components/AdminControls";
 import Signup from "./components/Signup";
 
@@ -61,6 +62,7 @@ function App() {
         <Route path="/adminlogin" element={<Login />} />
         <Route path="/signup981" element={<Signup />} />
         <Route path="/adminpost" element={<Post />} />
+        <Route path="/adminedit/:id" element={<Edit />} />
       </Routes>
     </div>
   );

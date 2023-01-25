@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { get, deleted } from "../services/service";
 import Footer from "./Footer";
@@ -17,13 +17,17 @@ import ecig from "../images/ecig.png";
 const Home = () => {
   const [top, setTop] = React.useState([]);
   const [refresh, setRefresh] = React.useState(false);
+  const [allStrains, setAllStrains] = React.useState([]);
 
   const newId = localStorage.getItem("id");
 
   const navigate = useNavigate();
 
+  const strainRef = useRef(null);
+
   React.useEffect(() => {
     getTop();
+    getAllStrains();
   }, [refresh]);
 
   const getTop = async () => {
@@ -36,11 +40,18 @@ const Home = () => {
     try {
       const response = await deleted(`/posts/delete/${postId}`);
 
-      console.log(response);
+      // console.log(response);
       setRefresh(!refresh);
     } catch (err) {
       console.error(err.message);
     }
+  };
+
+  const getAllStrains = async () => {
+    const response = await get("/posts/all-strains");
+
+    setAllStrains(response.data);
+    console.log(response.data.map());
   };
 
   return (
@@ -133,53 +144,76 @@ const Home = () => {
         </div>
       </div>
       <div className="top-strains-title">
-        <h2>Top strains today!</h2>
+        <h1>Categories</h1>
         <p>We recommmend these!</p>
       </div>
-      <div className="top-strains-home">
-        {top.map((topthree) => {
-          return (
-            <div className="home-top-sections">
-              <h3>{topthree.title}</h3>
-              {/* <div className="post-img-box"> */}
-              <img
-                src={
-                  topthree.postPic ||
-                  "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png"
-                }
-                alt=""
-              />
-              {/* </div> */}
-              <Link to="#">
-                <button className="order-btn">Order now</button>
-              </Link>
-
-              <div className="remove-btn">
-                {topthree.creatorId === newId && (
-                  <button onClick={() => deletePost(topthree._id)}>
-                    Remove
-                  </button>
-                )}
+      <div ref={strainRef} className="grinders-section">
+        {allStrains
+          .filter((strain) => strain.recommended === true)
+          .map((filteredStrain) => {
+            return (
+              <div className="grinders">
+                <Link to="#">
+                  <h3>{filteredStrain.title}</h3>
+                  <div className="post-img-box">
+                    <img
+                      src={
+                        filteredStrain.postPic ||
+                        "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png"
+                      }
+                      alt=""
+                    />
+                  </div>
+                  <p className="grinders-content">{filteredStrain.content}</p>
+                  <div className="remove-btn">
+                    {filteredStrain.creatorId === newId && (
+                      <button onClick={() => deletePost(filteredStrain._id)}>
+                        Remove
+                      </button>
+                    )}
+                    {filteredStrain.creatorId === newId && (
+                      <button>
+                        <Link to={`/adminedit/${filteredStrain._id}`}>
+                          Edit
+                        </Link>
+                      </button>
+                    )}
+                  </div>
+                </Link>
               </div>
+            );
+          })}
+        {/* {allStrains.map((strain) => {
+          return (
+            <div className="grinders">
+              <Link to="#">
+                <h3>{strain.title}</h3>
+                <div className="post-img-box">
+                  <img
+                    src={
+                      strain.postPic ||
+                      "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png"
+                    }
+                    alt=""
+                  />
+                </div>
+                <p className="grinders-content">{strain.content}</p>
+                <div className="remove-btn">
+                  {strain.creatorId === newId && (
+                    <button onClick={() => deletePost(strain._id)}>
+                      Remove
+                    </button>
+                  )}
+                  {strain.creatorId === newId && (
+                    <button>
+                      <Link to={`/adminedit/${strain._id}`}>Edit</Link>
+                    </button>
+                  )}
+                </div>
+              </Link>
             </div>
           );
-        })}
-
-        {/* <div className="home-top-sections">
-          <img src={mac} alt="" />
-          <h4>Pineapple MAC</h4>
-          <button>Order now</button>
-        </div>
-        <div className="home-top-sections">
-          <img src={mac} alt="" />
-          <h4>Pineapple MAC</h4>
-          <button>Order now</button>
-        </div>
-        <div className="home-top-sections">
-          <img src={mac} alt="" />
-          <h4>Pineapple MAC</h4>
-          <button>Order now</button>
-        </div> */}
+        })} */}
       </div>
       <Footer />
     </div>
